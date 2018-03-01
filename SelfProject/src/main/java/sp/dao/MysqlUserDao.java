@@ -1,9 +1,16 @@
 package sp.dao;
 
+import org.springframework.beans.factory.annotation.Autowired;
+
 import sp.vo.User;
 
 public class MysqlUserDao implements UserDao {
-
+	
+	@Autowired
+	public void setUserDao() {
+		
+	}
+	
 	@Override
 	public User selectList() throws Exception {
 		// TODO Auto-generated method stub
