@@ -1,14 +1,16 @@
 package sp.dao;
 
+import org.apache.ibatis.session.SqlSessionFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 
 import sp.vo.User;
 
 public class MysqlUserDao implements UserDao {
+	SqlSessionFactory sqlSessionFactory;
 	
 	@Autowired
-	public void setUserDao() {
-		
+	public void setSqlSessionFactory(SqlSessionFactory sqlSessionFactory) {
+		this.sqlSessionFactory = sqlSessionFactory;
 	}
 	
 	@Override
