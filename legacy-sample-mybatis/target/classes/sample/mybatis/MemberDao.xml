@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" 
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+  
+  <mapper namespace="sample.member.MemberDao">
+  	<select id="list" resultType="sample.domain.Member">
+  		SELECT * FROM MEMBER
+  	</select>
+  	
+  	<insert id="add"  parameterType="sample.domain.Member">
+		insert into member (id, name, joined) values(#{id}, #{name}, #{joined})
+  	</insert>
+  	
+  	<select id="get" parameterType="int" resultType="sample.domain.Member">
+  		select * from member where id = #{id}
+  	</select>
+  	
+  	<delete id="delete" parameterType="int">
+  		delete from member where id = #{id}
+  	</delete>
+  	
+  	<update id="update" parameterType="sample.domain.Member">
+		update member set name = #{name}, joined = #{joined} where id = #{id}
+  	</update>
+  </mapper> 
