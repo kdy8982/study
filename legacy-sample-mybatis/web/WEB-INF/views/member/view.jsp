@@ -7,6 +7,7 @@
 <title>${member.name }의 상세정보</title>
 </head>
 <body>
+<jsp:include page="/WEB-INF/views/header.jsp"/>
 <li>이름: ${member.name} </li>
 <li>이메일 ${member.email }</li>
 <a href="/member/update">Update</a> | <a href="/member/delete/${member.id}">Delete</a>

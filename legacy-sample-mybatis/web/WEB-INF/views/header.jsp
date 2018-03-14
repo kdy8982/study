@@ -7,9 +7,10 @@
 <head>
 </head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-
 <div style="background-color: burlywood">
-	김대연의 자유게시판 프로젝트 <span style="float: right;"> 
+<jsp:include page="/WEB-INF/views/sidebar.jsp"/>
+	<span>김대연의 자유게시판 프로젝트</span>
+	 <span style="float: right; margin-top: 5px;" > 
 		<c:if test="${sessionScope.member.name == null}">
 			<a href="<c:url value='/auth/login'/>" style="color: black">로그인</a>
 			| <a href="/member/form" style="color: black">회원가입</a>

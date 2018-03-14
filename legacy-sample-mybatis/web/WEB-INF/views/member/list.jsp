@@ -9,7 +9,6 @@
 </head>
 <body>
 <jsp:include page="/WEB-INF/views/header.jsp"/>
-
 <h2>회원목록</h2>
 <ul>
 <c:forEach items="${list}" var="member">
