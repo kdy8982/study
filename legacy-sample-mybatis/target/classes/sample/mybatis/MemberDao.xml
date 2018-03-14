@@ -8,7 +8,7 @@
   	</select>
   	
   	<insert id="add"  parameterType="sample.domain.Member">
-		insert into member (id, name, joined) values(#{id}, #{name}, #{joined})
+		insert into member (id, name, joined, email, password) values (#{id}, #{name}, #{joined}, #{email}, #{password})
   	</insert>
   	
   	<select id="get" parameterType="int" resultType="sample.domain.Member">
@@ -20,6 +20,18 @@
   	</delete>
   	
   	<update id="update" parameterType="sample.domain.Member">
-		update member set name = #{name}, joined = #{joined} where id = #{id}
+		update member set name = #{name}, joined = #{joined}, email = #{email} where id = #{id}
   	</update>
+  	
+  	<select id="getByEmailPassword" parameterType="sample.domain.Member" resultType="sample.domain.Member">
+  		select * from member where email=#{email} and password = #{password}
+  	</select>
+  	
+  	<select id = "selectOne" parameterType="sample.domain.Member" resultType="String">
+  		select name from member where email = #{email} and password = #{password}
+  	</select>
+  	
+  	<select id= "viewMember" parameterType="sample.domain.Member" resultType="sample.domain.Member">
+  		select * from member where email = #{email} and password = #{password}
+  	</select>
   </mapper> 

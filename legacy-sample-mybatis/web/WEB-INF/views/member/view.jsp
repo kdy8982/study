@@ -7,6 +7,8 @@
 <title>${member.name }의 상세정보</title>
 </head>
 <body>
-이름: ${member.name} | <a href="/member/update">Update</a> | <a href="/member/delete/${member.id}">Delete</a>
+<li>이름: ${member.name} </li>
+<li>이메일 ${member.email }</li>
+<a href="/member/update">Update</a> | <a href="/member/delete/${member.id}">Delete</a>
 </body>
 </html>

@@ -24,6 +24,7 @@
 
 	<jdbc:embedded-database id="dataSource" type="HSQL">
 		<jdbc:script location="classpath:/script/member_table.sql" />
+		
 	</jdbc:embedded-database>
 
 	<tx:annotation-driven />

@@ -1,8 +1,8 @@
-/Users/gimdaeyeon/eclipse-workspace/legacy-sample-mybatis/src/sample/member/MemberDao.java
-/Users/gimdaeyeon/eclipse-workspace/legacy-sample-mybatis/src/sample/member/MemberService.java
-/Users/gimdaeyeon/eclipse-workspace/legacy-sample-mybatis/src/sample/domain/Member.java
-/Users/gimdaeyeon/eclipse-workspace/legacy-sample-mybatis/src/sample/member/MemberController.java
-/Users/gimdaeyeon/eclipse-workspace/legacy-sample-mybatis/src/sample/member/MemberDaoIbatis.java
-/Users/gimdaeyeon/eclipse-workspace/legacy-sample-mybatis/src/sample/member/MemberServiceImpl.java
-/Users/gimdaeyeon/eclipse-workspace/legacy-sample-mybatis/src/sample/member/MemberDaoHibernate.java
-/Users/gimdaeyeon/eclipse-workspace/legacy-sample-mybatis/src/sample/member/MemberDaoMybatis.java
+/Users/gimdaeyeon/git/study/legacy-sample-mybatis/src/sample/member/MemberDaoMybatis.java
+/Users/gimdaeyeon/git/study/legacy-sample-mybatis/src/sample/member/MemberDao.java
+/Users/gimdaeyeon/git/study/legacy-sample-mybatis/src/sample/member/MemberDaoHibernate.java
+/Users/gimdaeyeon/git/study/legacy-sample-mybatis/src/sample/member/MemberController.java
+/Users/gimdaeyeon/git/study/legacy-sample-mybatis/src/sample/domain/Member.java
+/Users/gimdaeyeon/git/study/legacy-sample-mybatis/src/sample/member/MemberService.java
+/Users/gimdaeyeon/git/study/legacy-sample-mybatis/src/sample/member/MemberServiceImpl.java
+/Users/gimdaeyeon/git/study/legacy-sample-mybatis/src/sample/member/MemberDaoIbatis.java

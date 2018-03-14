@@ -19,7 +19,7 @@
 		</property>
 		<property name="viewResolvers">
 			<list>
-				<bean class="org.springframework.web.servlet.view.BeanNameViewResolver" />
+				<bean class="org.springframework.web.servlet.view.BeanNameViewResolver"  />
 				<bean
 					class="org.springframework.web.servlet.view.InternalResourceViewResolver">
 					<property name="prefix" value="/WEB-INF/views/" />

@@ -46,4 +46,12 @@ public class MemberDaoMybatis implements MemberDao{
 		memberDao.delete(id);
 	}
 
+	@Override
+	public Member getByEmailPassword(Member member) {
+		MemberDao memberDao = sqlSession.getMapper(MemberDao.class);
+		return memberDao.getByEmailPassword(member);
+	}
+
+
+
 }

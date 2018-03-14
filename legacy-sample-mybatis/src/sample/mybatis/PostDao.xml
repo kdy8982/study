@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" 
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+  
+  <mapper namespace="sample.post.PostDao">
+  	<select id="list" resultType="sample.domain.Post">
+  		SELECT * FROM post
+  	</select>
+  	
+  	<insert id="add"  parameterType="sample.domain.Post">
+		insert into post (pno, creator, ptitle, pcontent) values(#{postNumber},#{creator}, #{title}, #{content})
+  	</insert>
+  	
+  	<select id="get" parameterType="int" resultType="sample.domain.Post">
+  		select * from post where id = #{id}
+  	</select>
+  	
+  	<delete id="delete" parameterType="int">
+  		delete from post where id = #{id}
+  	</delete>
+  	
+  	<update id="update" parameterType="sample.domain.Post">
+		update post set name = #{name}, joined = #{joined}, email = #{email} where id = #{id}
+  	</update>
+  </mapper> 

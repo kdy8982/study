@@ -16,6 +16,12 @@
 			<form:input path="name" size="50"></form:input>
 			<form:errors path="name" cssClass="smdis-error-message" ></form:errors>
 		</p>
+		
+		<p>
+			<label>이메일</label>
+			<form:input path="email" size="50" />
+			<form:errors path="email" cssClass="smdis-error-message" />
+		</p>
 		<input type="submit" value="저장" />
 	</form:form>
 </body>

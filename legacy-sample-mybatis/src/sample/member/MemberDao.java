@@ -16,4 +16,9 @@ public interface MemberDao {
 	
 	void delete(int id);
 
+	Member getByEmailPassword(Member member);
+
+
+
+	
 }

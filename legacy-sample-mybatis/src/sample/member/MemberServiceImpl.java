@@ -3,6 +3,8 @@ package sample.member;
 import java.util.Date;
 import java.util.List;
 
+import javax.servlet.http.HttpSession;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -17,6 +19,9 @@ public class MemberServiceImpl implements MemberService {
 
 	public void add(Member member) {
 		member.setJoined(new Date());
+		
+		System.out.println(member.toString());
+		
 		dao.add(member);
 	}
 
@@ -35,5 +40,12 @@ public class MemberServiceImpl implements MemberService {
 	public void update(Member member) {
 		dao.update(member);
 	}
-	
+
+	@Override
+	public boolean addByCondition(Member member) {
+		// TODO Auto-generated method stub
+		return false;
+	}
+
+
 }

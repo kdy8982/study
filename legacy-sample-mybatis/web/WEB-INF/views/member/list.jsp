@@ -8,11 +8,12 @@
 <title>Sample Member List</title>
 </head>
 <body>
-<a href="<c:url value='/member/form'/>">Add</a>
-<h2>Member List</h2>
+<jsp:include page="/WEB-INF/views/header.jsp"/>
+
+<h2>회원목록</h2>
 <ul>
 <c:forEach items="${list}" var="member">
-	<li><a href="/member/${member.id}">${member.name}</a></li>	
+	<li>이름 : <a href="/member/${member.id}">${member.name}</a> | 이메일 : ${member.email}</li>
 </c:forEach>
 </ul>
 </body>
