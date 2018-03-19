@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="kr">
+<head>
+  <meta http-equiv="X-UA-Compatible" content="IE=Edge">
+  <meta charset="UTF-8">
+  <title>zzal school</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="font-awesome/css/font-awesome.min.css">
+  <link rel="stylesheet" href="node_modules/swiper/dist/css/swiper.min.css">
+  <link rel="stylesheet" href="css/common.css">
+  <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+<div class="main-page">
+<div id="header"></div>
+<div class="main-content index-page">
+  <div class="top clearfix">
+	  <div class="slider">
+	  <div class="swiper-container">
+      <ul class="swiper-wrapper" id="main-slide">
+      </ul>
+      <div class="swiper-pagination swiper-pagination-white"></div>
+      <div class="swiper-button-next swiper-button-white"></div>
+      <div class="swiper-button-prev swiper-button-white"></div>
+    </div>
+    </div> 
+	  
+    <div class="best">
+      <h3 class="title">금주의 인기짤강</h3>
+      <ul id="best-week-zzal">
+      </ul>
+    </div>
+  </div>
+  <div class="zzal-container">
+    <ul class="zzal-lects clearfix" id="zzal-list">
+		</ul>
+  </div>
+</div>
+<a href="#" class="scroll-to-top btn btn-info"><i class="fa fa-arrow-up" aria-hidden="true"></i> Top</a>
+<div id="footer"></div>
+</div>
+
+<script id="main-template" type="text/x-handlebars-template">
+{{#each zzalList}}
+<li class="zzal-li">
+  <a href="#" class="zzal-lect" data-zzno="{{zzno}}">
+    <div class="lect-top">
+      <span class="user-photo" style='background-image:url("upload/{{member.membpic}}")'></span>
+      <span class="user-name">{{member.nick}}</span>
+    </div>
+    <div class="zzal">
+      <div class="zzal-img">
+        <img src="upload/{{mainPic}}" alt="">
+        <div class="for-title">
+          <h3 class="title">{{title}}</h3>
+        </div>
+      </div>
+    </div>
+    <div class="bottom">
+      <div class="view">
+        <span>조회수</span><span> {{hitCount}}</span>
+      </div>
+      <div class="right">
+        <div class="like">
+          <span><i class="fa fa-heart-o" aria-hidden="true"><span class="blind">좋아요</span></i></span><span class="like-count"> {{likeCount}}</span>
+        </div>
+        <div class="like">
+          <span><i class="fa fa-commenting-o" aria-hidden="true"><span class="blind">댓글</span></i></span><span> {{replyCount}}</span>
+        </div>
+      </div>
+    </div>
+  </a>
+</li>
+{{/each}}
+</script>
+
+<script src="node_modules/jquery/dist/jquery.min.js"></script>
+<script src="https://developers.kakao.com/sdk/js/kakao.min.js"></script>
+<script src="node_modules/handlebars/dist/handlebars.min.js"></script>
+<script src="node_modules/swiper/dist/js/swiper.min.js"></script>
+<script src="js/load.js"></script>
+<script src="js/index.js"></script>
+
+</html>

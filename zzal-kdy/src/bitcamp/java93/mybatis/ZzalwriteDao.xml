@@ -1,0 +1,103 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="bitcamp.java93.dao.ZzalwriteDao">
+  
+  <resultMap type="zzal" id="zzalMap">
+    <id column="zzno" property="zzno"/>
+    <result column="mno" property="mno"/>
+    <result column="cno" property="cno"/>
+    <result column="cono" property="cono"/>
+    <result column="titl" property="title"/>
+    <result column="pic" property="mainPic"/>
+    <result column="cdt" property="cdt"/>
+    <result column="ztmp" property="zzalTemporary"/>
+    <result column="hitcnt" property="hitCount"/>
+  </resultMap>
+  
+  
+  <resultMap type="page" id="pageMap">
+    <id column="zpno" property="zzalpageNo"/>
+    <result column="zzno" property="zzalNo"/>
+    <result column="pgno" property="pageNo"/>
+    <result column="type" property="conTypeZ"/>
+    <result column="pic" property="pagePic"/>
+    <result column="cont" property="ConTextZ"/>
+  </resultMap>
+  
+  <sql id="select1">
+    select zzno, mno, cno, cono, titl, pic, cdt
+    from zzal_lect
+  </sql>
+  
+	<select id="findtmpZzal" resultMap="zzalMap" parameterType="map">
+	 <include refid="select1"></include>
+	 where zzno=#{zzno} and mno=#{mno};
+	</select>
+  
+  	<select id="findtmpPage" resultMap="pageMap" parameterType="map">
+	 select ZPNO, ZZNO ,PGNO,TYPE,PIC,CONT from page 
+	 where zzno=#{zzno}; 
+	</select>
+  
+  <insert id="insert" parameterType="zzal">
+    insert into zzal_lect(mno, cno, cono, titl, pic, cdt, ztmp, hitcnt) 
+    values(#{mno}, #{cno}, Case When #{cono} = 0 then null else #{cono} end, #{title}, #{mainPic}, current_timestamp(), #{zzalTemporary}, #{hitCount})
+ 
+  </insert>
+  
+  <insert id="insertPage" keyColumn="zzno" parameterType="page">
+    <selectKey  resultType="int" keyProperty="zzalNo" order="BEFORE">
+        SELECT MAX(last_insert_id(z.zzno)) FROM zzal_lect z       
+    </selectKey>
+    insert into page(zzno, pgno, type, pic, cont) 
+    values(#{zzalNo}, #{pageNo},#{conTypeZ}, #{pagePic},#{ConTextZ});
+  </insert>
+  
+  
+  <insert id="editInsertPage"  parameterType="page">
+    insert into page(zzno, pgno, type, pic, cont) 
+    values((select z.zzno from zzal_lect z where z.zzno=#{zzalNo}), #{pageNo},#{conTypeZ}, #{pagePic},#{ConTextZ});
+  </insert>
+  
+  
+  
+
+ <select id="getZzalNo" resultType="zzal">
+ 	select zzno, mno, cno, cono from zzal_lect where zzno=(SELECT MAX(last_insert_id(z.zzno)) FROM zzal_lect z); 
+ </select>
+ 
+ 
+  <delete id="deletePage" parameterType="map">
+  delete from page
+    where zzno=#{zzno}
+  </delete>
+  
+  <update id="updateZzal" parameterType="zzal">
+  	update zzal_lect z set z.cno=(select c.cno from catg c where c.cno=#{cno}) 
+  						,z.cono=(select d.cono from colct d where d.cono=#{cono})  
+  						,z.titl=#{title},z.pic=#{mainPic},z.ztmp=#{zzalTemporary} where z.zzno=#{zzno}
+  </update>
+  
+  
+<!--  <delete id="deleteZzal" parameterType="map">
+  delete from zzal_lect
+    where zzno=#{zzno}
+  </delete> -->
+  <!-- <select id="">
+  </select>
+  
+  update zzal_lect z set z.cno=(select c.cno from catg c where c.cno=1) 
+  						,z.cono=(select d.cono from colct d where d.cono=2) 
+  						where zzno=62
+  						,z.titl=#{title},z.pic=#{mainPic},z.ztmp=#{zzalTemporary} where zzno=62
+  
+  
+  
+ -->
+</mapper> 
+
+
+
+

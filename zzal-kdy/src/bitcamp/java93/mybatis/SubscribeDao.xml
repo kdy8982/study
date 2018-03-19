@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="bitcamp.java93.dao.SubscribeDao">
+  
+  <resultMap type="subscribe" id="subsMap">
+    <id column="mno" property="memberno"/>
+    <result column="cono" property="collectNo"/>
+  </resultMap>
+
+  <sql id="select1">
+    select mno, cono 
+    from subs
+  </sql>
+
+  <select id="getList" resultMap="subsMap" parameterType="subscribe">
+    <include refid="select1"/>
+    where mno=#{mno} and cono=#{cono}; 
+  </select>
+  
+  <select id="getCono" resultMap="subsMap" parameterType="subscribe">
+    select z.cono from zzal_lect z where z.zzno=#{zzalNo}    
+  </select>
+  
+  
+  
+  <insert id="insertColct" parameterType="subscribe">
+	insert into subs(mno,cono) 
+    values(#{memberno},#{collectNo});
+ </insert>
+
+
+ <delete id="deleteColct" parameterType="subscribe">
+    delete from subs
+    where mno=#{memberno} and cono=#{collectNo};
+ </delete>
+   
+ <delete id="deleteSubs" parameterType="subscribe">
+    delete from subs
+    where cono=#{collectNo};
+ </delete>
+ 
+</mapper> 
+
+
+
+

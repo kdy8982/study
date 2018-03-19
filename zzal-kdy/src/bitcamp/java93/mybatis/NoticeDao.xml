@@ -1,0 +1,118 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="bitcamp.java93.dao.NoticeDao">
+
+	<resultMap type="notice" id="noticeMap">
+		<id column="nono" property="nono" />
+		<result column="mno" property="ownerNo" />
+		<result column="zzno" property="zzalNono" />
+		<result column="rno" property="reNono" />
+		<result column="cono" property="conono" />
+		<result column="ynn" property="ynn" />
+		<result column="notype" property="Notype" />
+		<result column="dmno" property="who" />
+	</resultMap>
+	
+	
+	 
+  <resultMap type="zzallike" id="zzalLikeMap">
+    <id column="zzno" property="zzno"/>
+    <result column="mno" property="mno"/>
+    <result column="cdt" property="cdt"/>
+  </resultMap>
+	
+  
+  <resultMap type="reply" id="replyMap">
+    <id column="rno" property="replyNumber"/>
+    <result column="mno" property="memberNumber"/>
+    <result column="nick" property="nickName"/>
+    <result column="pic" property="membPic"/>
+
+    <result column="cont" property="content"/>
+    <result column="date_format(cdt, '%Y-%m-%d %p %h:%i')" property="createDate"/>
+    <result column="re_like" property="replyLike"/>
+    <result column="report" property="report"/>
+    <result column="zzno" property="zzalnumber"/>
+    <result column="reparent" property="rereplyParentNumber"/>
+    <result column="reorder" property="replyOrderNumber"/>
+  </resultMap>
+  
+   <resultMap type="subscribe" id="subsMap">
+    <id column="mno" property="memberno"/>
+    <result column="cono" property="collectNo"/>
+  </resultMap>
+  
+	<insert id="insLikNotice" parameterType="zzallike">
+	insert into notice(mno,zzno,notype,dmno,cdt) 
+	values ((select z.mno from zzal_lect z where z.zzno=#{zzno}),#{zzno},'lik',#{mno},current_timestamp())
+	</insert>
+
+	<insert id="insReplyNotice" parameterType="reply">
+	 <selectKey  resultType="int" keyProperty="replyNumber" order="BEFORE">
+        SELECT MAX(last_insert_id(r.rno)) FROM reply r       
+    </selectKey>
+	insert into notice(mno,zzno,rno,notype,dmno,cdt) 
+	values ((select z.mno from zzal_lect z where z.zzno=#{zzalnumber}),#{zzalnumber},#{replyNumber},'reply',#{memberNumber},current_timestamp())
+	</insert>
+	
+	<insert id="insSubsNotice" parameterType="subscribe">
+	insert into notice(mno,cono,notype,dmno,cdt) 
+	values ((select c.mno from colct c where c.cono=#{collectNo}),#{collectNo},'subs',#{memberno},current_timestamp())
+	</insert>
+	
+	<select id="noticeList" parameterType="int" resultType="notice">
+  select n.nono,n.mno,ifnull(n.zzno,0) as zzalNono,ifnull(n.cono,0) as conono,
+        (select m.nick from memb m where m.mno= n.dmno) as who_nick,
+        (select m.pic from memb m where m.mno= n.dmno) as who_pic,
+	ifnull ((select z.titl from zzal_lect z where z.zzno=n.zzno),0) as zzal_title,
+	ifnull ((select c.title from colct c where c.cono=n.cono),0) as colct_title,
+	ifnull ((select r.cont from reply r where r.rno=n.rno),0) as reply_con,
+	n.notype,
+	n.ynn,
+	n.dmno,
+	n.cdt as noticdt
+  from notice n where n.mno=#{mno} order by n.nono desc;
+	</select>
+	
+	<select id="getCnt" parameterType="int" resultType="int">
+		select count(*) from notice where mno=#{mno} and ynn=0;
+	</select>
+	
+	<update id="updateNo" parameterType="int">
+		update notice set ynn=1 where mno=#{mno}
+	</update>
+	
+	
+	<!-- 딜릿을 할껀데  -->
+	<delete id="deleteNo" parameterType="map">
+	
+		delete from notice
+		<if test="notype != null">
+	    <where>
+	      <choose>
+	          <when test="notype == 'notice'">nono = #{nono}</when>
+		      <when test="notype == 'subs'">
+		      nono = (SELECT b.nono from (select n.nono,n.notype,n.dmno from notice n where n.cono=#{cono}) as b 
+		      where b.notype = 'subs' and b.dmno=#{dmno}) </when>
+		      <when test="notype == 'reply'">
+		      nono=(select b.nono from (select c.nono,c.rno from notice c) b where b.rno = #{rno});
+		      </when>
+		      <when test="notype == 'lik'">
+		      nono =  (SELECT b.nono from (select n.nono,n.notype,n.dmno from notice n where n.zzno=#{zzno}) as b 
+		      where b.notype = 'lik' and b.dmno=#{dmno})</when>
+	      </choose>
+	    </where>
+	    </if>
+		
+	
+	</delete>
+	
+    
+	
+</mapper> 
+
+
+
+

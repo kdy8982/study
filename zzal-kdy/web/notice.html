@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="kr">
+<head>
+  <meta http-equiv="X-UA-Compatible" content="IE=Edge">
+  <meta charset="UTF-8">
+  <title>zzal school</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="font-awesome/css/font-awesome.min.css">
+  <link rel="stylesheet" href="node_modules/swiper/dist/css/swiper.min.css">
+  <link rel="stylesheet" href="css/common.css">
+  <link rel="stylesheet" href="css/style.css">
+  <link rel="stylesheet" href="css/notice.css">
+</head>
+<body>
+<div class="main-page">
+<div id="header"></div>
+<div class="main-content notice-page">
+<div class="zzal-container">
+	<div id="notice-target" class="titles-wrap">
+	</div><!--notice target-->
+</div>
+</div>
+<div id="footer"></div>
+</div>
+
+<script src="node_modules/jquery/dist/jquery.min.js"></script>
+<script src="node_modules/handlebars/dist/handlebars.min.js"></script>
+<!-- <h1>{{Notype}}</h1> -->
+
+<script id="notice-template" type="text/x-handlebars-template">
+  <h2 class="title">알림</h2>
+{{#each list}} 
+	
+     {{isZzalNo}}
+      <div class="left">
+          <span class="user-photo" style="background-image: url(upload/{{who_pic}});"></span>
+        </div>
+	  <div class="right">
+          <a href='#'><span class="fa fa-times nodel" data-nono={{nono}}></span></a>
+      </div>	
+      <div class="contents">
+ 			{{isVowel}}
+        <p class="date">{{noticdt}}</p>
+      </div>  
+     </div>
+	
+  {{/each}}
+</script>
+
+<script src="node_modules/swiper/dist/js/swiper.min.js"></script>
+<script src="https://developers.kakao.com/sdk/js/kakao.min.js"></script>
+<script src="js/load.js"></script>
+<script src="js/notice.js"></script>
+</body>
+</html>

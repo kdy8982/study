@@ -1,0 +1,203 @@
+.search-zzallect {
+	    height: calc(100vh - 66px);
+    overflow-y: auto;
+}
+
+.suggest-in-line:hover{
+	background-color:#ddd
+}
+
+
+.suggest-in-line.on{
+	background-color:#ddd
+}
+
+
+.suggest-in-line {
+	position: relative;
+	width: 100%;
+	height: 140px;
+	border-bottom: 1px solid #ccc;
+}
+.suggest-in-line .search-line-pack{
+	width:100%
+}
+.suggest-in-line .btn-key {
+	position: absolute;
+	right: 15px;
+	line-height: 100px;
+	font-size: 1.125rem;
+}
+
+.suggest-in-line .link-search {
+	height: 140px;
+	font-size: 1.125rem;
+	line-height: 100px;
+	display: inline-block;
+	width: 20%;
+	/* overflow: hidden; 
+  white-space: nowrap;
+  text-overflow: ellipsis;
+  */
+	float: left;
+}
+
+.suggest-in-line .left-zzal {
+	margin-top: 5px;
+    margin-left: 10px;
+	display: inline-block;
+	height: 90%;
+	width: 90%;
+	background-image: url("../image/ohh.jpg");
+	background-position: center;
+	background-size: cover;
+	background-repeat: no-repeat;
+}
+
+.suggest-in-line .search-mid-con {
+	display: inline-block;
+	
+	height: 140px;
+	width: 45%;
+	margin-left: 5px;
+	float: left;
+	padding: 10px;
+}
+
+.search-mid-con .info {
+	display: block;
+}
+
+.search-mid-con .user-info {
+	display: block;
+	height: 50px;
+}
+
+.search-mid-con .user-info  .phot{
+	float: left;
+    display: inline-block;
+    /* background-image: url(../image/anonymous.png); */
+    background-size: cover;
+    background-position: center;
+    height: 45px;
+    width: 45px;
+    border-radius: 50%;
+    display: inline-block;
+    border: 1px solid #999;
+}
+
+.search-mid-con .user-info .name {
+	margin-left:10px;
+	font-size:12px;
+	height: 30px;
+	line-height: 50px;
+}
+
+
+.search-mid-con  .cata-name {
+	width: 60px;
+	display: inline-block;
+	height:16px;
+    font-size: 12px;
+
+}
+
+.search-mid-con  .lect-titl {
+	white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+	width: 100%;
+	font-weight:bold;
+	font-size:18px;
+	display: inline-block;
+  height: 25px;
+    /* line-height: 30px; */
+}
+.search-mid-con  .cdt {
+	height:14px;
+	font-size:12px;
+	
+
+}
+
+
+.suggest-in-line .detail-info {
+	top: 20px;
+	right: 5%;
+	position: absolute;
+	display: inline-block;
+	width: 15%;
+	padding: 10px;
+}
+
+.suggest-in-line .detail-info li {
+	height: 30px;
+	line-height: 30px;
+	display: block;
+}
+.suggest-in-line .detail-info{
+	color: rgba(0,0,0,0.5);
+}
+
+
+.suggest-in-line .detail-info .left {
+	width: 40px;
+	border-right:1px solid #ddd;
+	float: left;
+}
+
+.suggest-in-line .detail-info .right {
+	float: right;
+}
+
+.suggest-in-line .btn-key {
+	color: rgba(0,0,0,0.5);
+	position: absolute;
+	right: 15px;
+	line-height: 30px;
+	font-size: 1.125rem;
+}
+	/* .search-mid-con .s-catg-titl{
+	line-height: 40px;
+	
+    }
+
+ */
+
+@media (max-width: 765px){
+	.suggest-in-line .detail-info {
+	top: 20px;
+	right: 5%;
+	position: absolute;
+	display: inline-block;
+	width: 25%;
+	padding: 10px;
+	font-size: 12px;
+}
+	
+	.search-mid-con .user-info {
+	display: block;
+	height: 50px;
+}
+	.search-mid-con  .lect-titl {
+	
+	 font-weight: bold;
+    font-size: 16px;
+    display: inline-block;
+    height: 30px;
+	}
+	.suggest-in-line .detail-info .left {
+    width: 20px;
+	}
+	.suggest-search .zzal-container {
+	  padding: 0;
+	}
+	.suggest-in-line .left-zzal {
+	  margin-left: 0;
+	  width: 100%;
+	}
+	.suggest-in-line .search-mid-con {
+	  margin-left: 0;
+	  width: 50%;
+	}
+}

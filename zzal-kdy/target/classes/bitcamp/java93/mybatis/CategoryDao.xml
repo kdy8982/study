@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="bitcamp.java93.dao.CategoryDao">
+  
+  <resultMap type="category" id="categoryMap">
+    <id column="cno" property="no"/>
+    <result column="name" property="name"/>
+  </resultMap>
+
+  <sql id="select1">
+    select cno, name 
+    from catg
+  </sql>
+
+  <select id="selectList" resultMap="categoryMap" parameterType="map">
+    <include refid="select1"/>
+    order by cno asc 
+  </select>
+  
+  <select id="countAll" resultType="int">
+    select count(*)
+    from catg
+  </select>
+
+</mapper> 
+
+
+
+

@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="kr">
+<head>
+  <meta http-equiv="X-UA-Compatible" content="IE=Edge">
+  <meta charset="UTF-8">
+  <title>컬렉션 추가</title>
+  <link rel="stylesheet" href="font-awesome/css/font-awesome.min.css">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="node_modules/swiper/dist/css/swiper.min.css">
+<!--   <link rel="stylesheet" href="css/jquery.bxslider.min.css"> -->
+  <link rel="stylesheet" href="css/common.css">
+  <link rel="stylesheet" href="css/style.css">
+  <link rel="stylesheet" href="css/collectadd.css">
+
+
+</head>
+<body>
+<div class="main-page">
+<div id="header"></div>
+<div class="main-content addpage">
+    <div class="collect-addpage">
+      <div class="collect-photo-add" id="collectaddPhoto">
+        <div class="collect-photo" id="collect-cover-picture">
+          <a href="#" class="represent-photo"><i class="fa fa-camera-retro" aria-hidden="true"></i><span class="text">이미지 업로드</span></a>
+          <input class="collectPhoto-upload-btn" type="file" name="files" accept="image/gif, image/png, image/jpg, image/jpeg">
+	      <input class="fifi-filename" type="hidden" names="filenames">	
+        </div>
+      </div>
+    <div class="zzal-container">
+    <form>
+      <div class="collect-add" id="collect-add1">
+        <div class="input-form1">
+          <span class="input-option">컬렉션 제목(필수)</span><br>
+          <input class="collect-input-name" id="collect-add-title" type=text placeholder="컬렉션에 멋진 이름을 지어주세요.">
+        </div>
+        <div class="input-form1">
+        <span class="input-option">컬렉션 설명</span>
+          <input class="collect-input-name" id="collect-add-content" placeholder="Zzaler들에게 컬렉션을 소개해주세요.">
+        </div>
+        <div class="range-option">
+          <span class="input-option">공개 범위 설정</span>
+          <p class="range-text">비공개 컬렉션으로 설정하면 다른 Zzaler들에게 이컬렉션이 보이지 않습니다.</p>
+        </div>
+      </div>
+    <div class="private-collectSwitch clearfix">
+        <span class="private-collect">비공개 컬렉션</span>
+        <div class="private-switch">
+          <div class="onoffswitch">
+            <input type="checkbox" name="onoffswitch" class="onoffswitch-checkbox" id="myonoffswitch" >
+            <label class="onoffswitch-label" for="myonoffswitch"></label>
+          </div>
+        </div><!-- 비공개 스위치 -->
+    </div>
+      <div class="collect-deletebtn clearfix">
+          <a href="#" id="collect-delete" class="collect-delete">컬렉션 삭제</a>
+      </div>  
+    <div class="buttons clearfix">
+      <button id="collect-savebtn" type="button" class="btn btn-info btn-save">저장</button>
+      <a href="mypage.html"><button id="" type="button" class="btn btn-default btn-cancle">취소</button></a>
+    </div>
+   </form>  
+    </div> <!--zzal-container -->
+  </div>
+</div><!--main content -->
+<footer id="footer"></footer>
+</div>
+
+<script src="node_modules/jquery/dist/jquery.min.js"></script>
+<script src="https://developers.kakao.com/sdk/js/kakao.min.js"></script>
+<script src="node_modules/swiper/dist/js/swiper.min.js"></script>
+<script src="node_modules/blueimp-file-upload/js/vendor/jquery.ui.widget.js"></script>
+<script src="node_modules/blueimp-load-image/js/load-image.all.min.js"></script>
+<script src="node_modules/blueimp-canvas-to-blob/js/canvas-to-blob.js"></script>
+<script src="node_modules/bootstrap/dist/js/bootstrap.js"></script>
+<script src="node_modules/blueimp-file-upload/js/jquery.iframe-transport.js"></script>
+<script src="node_modules/blueimp-file-upload/js/jquery.fileupload.js"></script>
+<script src="node_modules/blueimp-file-upload/js/jquery.fileupload-process.js"></script> 
+<script src="node_modules/blueimp-file-upload/js/jquery.fileupload-image.js"></script>
+<script src="https://developers.kakao.com/sdk/js/kakao.min.js"></script> 
+<script src="js/load.js"></script>
+<script src="js/collectupdate.js"></script>
+
+</body>
+</html>

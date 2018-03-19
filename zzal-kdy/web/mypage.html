@@ -1,0 +1,252 @@
+<!DOCTYPE html>
+<html lang="kr">
+<head>
+  <meta http-equiv="X-UA-Compatible" content="IE=Edge">
+  <meta charset="UTF-8">
+  <title>zzal school</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="font-awesome/css/font-awesome.min.css">
+  <link rel="stylesheet" href="node_modules/swiper/dist/css/swiper.min.css">
+  <link rel="stylesheet" href="css/common.css">
+  <link rel="stylesheet" href="css/style.css">
+  <link rel="stylesheet" href="css/notice.css">
+  <link rel="stylesheet" href="css/mypage.css">
+  <link rel="stylesheet" href="css/choicecategory.css">
+  <link rel="stylesheet" type="text/css" href="css/sweetalert.css">
+
+</head>
+<body>
+<div class="main-page">
+  <div id="header"></div>
+  <div class="main-content mypage">
+    <div class="top clearfix">
+      <div class="zzal-container clearfix">
+        <div class="user-info-face">
+          <div class="profile-wrap clearfix">
+           <div class="phot"></div>
+           <span class="user-name"></span>
+          </div>
+          <div class="setting-wrap">
+            <a href="profilemodify.html" class="setting"><i class="fa fa-cog" aria-hidden="true"></i> 설정하기</a>
+            <a href="#" class="logout" id="logout-link"><i class="fa fa-sign-out" aria-hidden="true"></i> 로그아웃</a>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="mypage_mid">
+      <div class="zzal-container">
+        <ul class="select_info clearfix">
+          <li class="menu on" id="zzal-setting"><a href="#">짤강관리</a></li>
+          <li class="menu" id="collect-setting"><a href="#">컬렉션관리</a></li>
+          <li class="menu"><a href="#">관심 카테고리</a></li>
+        </ul>
+        </div>
+    </div>
+    <div class="mypage_bottom">
+      <div class="zzal-container">
+        <div class="zzal-wrap zzal-cons">
+          <ul class="zzal-menu01 zzal-menu clearfix">
+            <li class="menu on" id="my-zzal"><a href="#">내 짤강</a></li>
+            <li class="menu" id="ilike-zzal"><a href="#">좋아요</a></li>
+            <li class="menu" id="temp-zzal"><a href="#">임시</a></li>
+          </ul>
+          	<div class="zzal-con01">
+          <ul class="zzal-lects clearfix" id="zzal-handle"></ul> <!-- 내짤강리스트 handlebars -->
+          <!-- <div class="boom">붐붐붐</div> -->
+          </div>
+          <div class="zzal-con01">
+            <ul class="zzal-lects clearfix" id="ilike-zzallist"></ul> <!-- 좋아요한 짤강 리스트 -->
+          </div>
+          <div class=zzal-con01>
+          <ul class ="zzal-lects clearfix" id="tmpor-zzal"></ul> <!-- 임시저장 handlebars -->
+          </div>
+        </div>
+        <div class="zzal-wrap zzal-collection">
+          <ul class="zzal-menu02 zzal-menu clearfix">
+            <li class="menu" id="my-collect-list"><a href="#">내 컬렉션</a></li>
+            <li class="menu" id="subs-btn"><a href="#">구독</a></li>
+            <li class="menu" id="public-collect-list"><a href="#">비공개</a></li>
+          </ul>
+          <div class="zzal-con02">
+             <ul class="collections clearfix">
+              <li class="add clearfix">
+                <a href="collectadd.html" class="img"></a>
+                <a href="collectadd.html" class="right">
+                            새 컬렉션 만들기
+                </a>
+              </li>
+             <div class="collection-view" id="my-collection01"></div><!-- 내컬렉션 handlebars -->
+            </ul>
+          </div>
+          <div class="zzal-con02">
+            <ul class="collections clearfix" id="my-collection02"></ul><!-- 구독 컬렉션 리스트 -->
+          </div>
+            <div class="zzal-con02">
+	         <ul class="collections clearfix">
+	           <div class="collection-view" id="my-collection03"></div><!-- 비공개 핸들바스 -->
+	         </ul>
+            </div>
+        </div>
+        <div class="zzal-wrap zzal-category">
+          <div class="categorys" id="choice-categorys">
+        <ul class="category-1 mypage clearfix">
+          <li>
+            <div class="music catg-choicer">
+              <input type="checkbox" id="music-catg" value="1" class="click-checkbox" name="chkList">
+              <label for="music-catg"><img src="image/category01.jpg" title="음악" class="choosecatg"><span class="catg-title">음악·예술</span></label>
+            </div>
+          </li>
+          <li>
+            <div class="phototrip catg-choicer">
+              <input type="checkbox" id="photo-trip-catg" value="2" class="click-checkbox" name="chkList">
+              <label for="photo-trip-catg"><img src="image/category02.png" title="사진·여행" class="choosecatg"><span class="catg-title">사진·여행</span></label>
+            </div>
+          </li>
+          <li>
+            <div class="artculture catg-choicer">
+              <input type="checkbox" id="art-culture-catg" value="3" class="click-checkbox" name="chkList">
+              <label for="art-culture-catg"><img src="image/category03.jpg" title="예술·문화" class="choosecatg"><span class="catg-title">언어·학문</span></label>
+            </div>
+          </li>
+          <li>
+            <div class="family catg-choicer">
+              <input type="checkbox" id="family-catg" value="4" class="click-checkbox" name="chkList">
+              <label for="family-catg"><img src="image/category04.jpg" title="연애·가족" class="choosecatg"><span class="catg-title">연애·가족</span></label>
+            </div>
+          </li>
+          <li>
+            <div class="cook catg-choicer">
+              <input type="checkbox" id="cook-catg" value="5" class="click-checkbox" name="chkList">
+              <label for="cook-catg"><img src="image/category05.jpg" title="요리" class="choosecatg"><span class="catg-title">요리</span></label>
+            </div>
+          </li>
+          <li>
+            <div class="economy catg-choicer">
+              <input type="checkbox" id="economy-catg" value="6" class="click-checkbox" name="chkList">
+              <label for="economy-catg"><img src="image/category06.jpg" title="경제" class="choosecatg"><span class="catg-title">경제</span></label>
+            </div>
+          </li>
+          <li>
+            <div class="it catg-choicer">
+              <input type="checkbox" id="it-catg" value="7" class="click-checkbox" name="chkList">
+              <label for="it-catg"><img src="image/category07.jpg" title="IT" class="choosecatg"><span class="catg-title">IT</span></label>
+            </div>
+          </li>
+          <li>
+            <div class="job catg-choicer">
+              <input type="checkbox" id="job-catg" value="8" class="click-checkbox" name="chkList">
+              <label for="job-catg"><img src="image/category08.jpg" title="직업·진로" class="choosecatg"><span class="catg-title">직업·진로</span></label>
+            </div>
+          </li>
+          <li>
+            <div class="fashionbeauty catg-choicer">
+              <input type="checkbox" id="fashion-beauty-catg" value="9" class="click-checkbox" name="chkList">
+              <label for="fashion-beauty-catg"><img src="image/category09.jpg" title="패션·뷰티" class="choosecatg"><span class="catg-title">패션·뷰티</span></label>
+            </div>
+          </li>
+        </ul>
+        <button type="button" class="choice-btn catg-submitBtn btn btn-info">선택 완료!</button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="footer">
+    <p>zzal school</p>
+  </div>
+</div>
+<script id="my-collection-template" type="text/x-handlebars-template">
+{{#each list}}
+<li class="clearfix">
+  <a href="collectdetail.html" class="img mycollectlist" data-no={{no}} data-memNo={{memNo}} style="background-image: url(upload/{{picture}});"></a>
+   <div class="right">
+     <a href='#' class="title mycollectlist" id="collectview" data-no={{no}}>{{title}}</a>
+     <span class="sfont">짤강 수  <span class="zzal-cnt"></span></span>
+     <span class="sfont">구독 수  <span class="subs-cnt"></span></span>
+     <a href="#" data-no={{no}} class="btn btn-info editerbtn">편집</a>
+   </div>
+ </li>
+{{/each}}
+</script>
+<script id="my-zzallist-template" type="text/x-handlebars-template">
+{{#each selectzzalList}}
+<li>
+  <a href="#"  class="zzal-lect" data-zzno="{{zzno}}">
+    <div class="lect-top">
+      <span class="user-photo"style='background-image:url("upload/{{membe.membpic}}")'></span>
+      <span class="user-name">{{membe.nick}}</span>
+    </div>
+    <div class="zzal">
+      <div class="zzal-img">
+        <img src="upload/{{zzall.mainPic}}" alt="">
+        <div class="for-title">
+          <h3 class="title">{{zzall.title}}</h3>
+        </div>
+      </div>
+    </div>
+    <div class="bottom">
+      <div class="view">
+        <span>조회수</span><span> {{zzall.hitCount}}</span>
+      </div>
+      <div class="right">
+        <div class="like">
+          <span><i class="fa fa-heart-o" aria-hidden="true"><span class="blind">좋아요</span></i></span><span> {{zzall.likeCount}}</span>
+        </div>
+        <div class="like">
+          <span><i class="fa fa-commenting-o" aria-hidden="true"><span class="blind">댓글</span></i></span><span> {{zzall.replyCount}}</span>
+        </div>
+      </div>
+    </div>
+  </a>
+  <div class="setting-zzal">
+	  <button type="button" class="modify-zzal">편집 </button> | 
+    <button type="button" class="delete-zzal">삭제</button>
+  </div>
+</li>
+{{/each}}
+</script>
+<script id="my-like-zzallist-template" type="text/x-handlebars-template">
+{{#each selectzzalList}}
+<li>
+  <a href="#"  class="zzal-lect" data-zzno="{{zzno}}">
+    <div class="lect-top">
+      <span class="user-photo"style='background-image:url("upload/{{membe.membpic}}")'></span>
+      <span class="user-name">{{membe.nick}}</span>
+    </div>
+    <div class="zzal">
+      <div class="zzal-img">
+        <img src="upload/{{zzall.mainPic}}" alt="">
+        <div class="for-title">
+          <h3 class="title">{{zzall.title}}</h3>
+        </div>
+      </div>
+    </div>
+    <div class="bottom">
+      <div class="view">
+        <span>조회수</span><span> {{zzall.hitCount}}</span>
+      </div>
+      <div class="right">
+        <div class="like">
+          <span><i class="fa fa-heart-o" aria-hidden="true"><span class="blind">좋아요</span></i></span><span> {{zzall.likeCount}}</span>
+        </div>
+        <div class="like">
+          <span><i class="fa fa-commenting-o" aria-hidden="true"><span class="blind">댓글</span></i></span><span> {{zzall.replyCount}}</span>
+        </div>
+      </div>
+    </div>
+  </a>
+</li>
+{{/each}}
+</script>
+<script src="node_modules/jquery/dist/jquery.min.js"></script>
+<script src="node_modules/handlebars/dist/handlebars.min.js"></script>
+<script src="node_modules/swiper/dist/js/swiper.min.js"></script>
+<script src="https://developers.kakao.com/sdk/js/kakao.min.js"></script>
+<script src="js/load.js"></script>
+<script src="js/mypage.js"></script>
+<script src="js/choicecatg.js"></script>
+<script src="js/sweetalert.min.js"></script>
+
+</body>
+</html>

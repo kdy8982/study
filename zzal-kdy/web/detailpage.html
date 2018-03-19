@@ -1,0 +1,585 @@
+<!DOCTYPE html>
+<html lang="kr">
+<head>
+  <meta http-equiv="X-UA-Compatible" content="IE=Edge">
+  <meta charset="UTF-8">
+
+	<meta property="og:url"                content="http://192.168.0.57/zzal-bit93/detailpage.html" />
+	<meta property="og:type"               content="zzal" />
+	<meta property="og:title"              content="zzal" />
+	<meta property="og:description"        content="creative thinking?" />
+	<meta property="og:image"              content="http://192.168.0.57/zzal-bit93/image/sul.jpg" />
+
+  <title>zzal school</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="font-awesome/css/font-awesome.min.css">
+  <link rel="stylesheet" href="scrollbar/jquery.mCustomScrollbar.css">
+  <link rel="stylesheet" href="node_modules/swiper/dist/css/swiper.min.css">
+  <link rel="stylesheet" href="css/common.css">
+  <link rel="stylesheet" href="css/style.css">
+  <link rel="stylesheet" href="css/detailpage.css">
+  <link rel="stylesheet" href="css/reply.css">
+
+</head>
+<body class="detailpage-body">
+   <!-- Swiper -->
+   <div class="detail-main main-page">
+    <div id="header"></div>
+    <div class="main-content">
+
+<!--mobile-header-->
+    <div class="detail-m-header">
+      <h1>
+        <a href="./">Zzal School</a>
+      </h1>
+   	<div class="header-right">
+   	 <div class="upper-right auto-play">
+          <div id="m-play-btn">
+              <a href="#" class="bigboy fa fa-pause off-btn" aria-hidden="true"></a>
+              <a href="#" class="bigboy fa fa-play" aria-hidden="true"></a>
+              <a href="#" class="set-time">
+                <input type="text" value="1" class="settime-sec" readonly="readonly"><i class="fa fa-sort" aria-hidden="true"></i>초
+              </a>
+          </div>
+      </div>
+   	</div>
+
+   </div>
+<!--mobile-header-->
+
+   <div class="zzal-container">
+
+              <div class="detail-left">
+                <div class="left-upper-menu">
+                  <ul>
+                    <li>
+                      	<div class="upper-upper like">
+                          <div id="like-btn">
+                            <div class="hoverbig heart bigboy fa fa-heart off-btn" aria-hidden="true"></div>
+                            <div class="hoverbig heart bigboy fa fa-heart-o" aria-hidden="true"></div>
+                          </div>
+                          <div class="smallboy navinfo">좋아요</div>
+                        </div>
+                    </li>
+                    <!-- <li class="subs-null">
+                   		  <div class="upper-upper subscribe">
+	                        <div id="subscribe-btn" class="">
+	                          <div class="hoverbig subs bigboy fa fa-bookmark off-btn" aria-hidden="true" ></div>
+	                          <div class="hoverbig subs bigboy fa fa-bookmark-o" aria-hidden="true" ></div>
+	                        </div>
+	                        <div class="smallboy navinfo-four">구독하기</div>
+                        </div>
+                    </li> -->
+                    <li>
+                        <div class="upper-upper auto-play">
+	                        <div id="play-btn" class="">
+	                            <div class="hoverbig bigboy fa fa-pause off-btn" aria-hidden="true"></div>
+	                            <div class="hoverbig bigboy fa fa-play" aria-hidden="true"></div>
+	                        </div>
+	                        <div class="smallboy navinfo-four">자동재생</div>
+	                        <div class="set-time">
+	                          <input type="number" value="3" class="settime-sec" min="1" max="60">초
+	                        </div>
+                        </div>
+                    </li>
+                  </ul>
+                </div>
+                <div class="left-down-menu">
+                 <ul class="sns-links">
+                  <li>
+										<a href="#">
+                      <div class="down-down facebook-icon">
+                     	<div id="fb-root"></div>
+												<script>(function(d, s, id) {
+												  var js, fjs = d.getElementsByTagName(s)[0];
+												  if (d.getElementById(id)) return;
+												  js = d.createElement(s); js.id = id;
+												  js.src = "//connect.facebook.net/ko_KR/sdk.js#xfbml=1&version=v2.10&appId=1589125961139017";
+												  fjs.parentNode.insertBefore(js, fjs);
+												}(document, 'script', 'facebook-jssdk'));</script>
+
+		                     <!--  <div class="fb-share-button" data-href="http://192.168.0.57/zzal-bit93/detailpage.html" data-layout="button" data-size="small"
+		                      data-mobile-iframe="true">
+		                      </div> -->
+                      	<a class="fb-xfbml-parse-ignore" target="_blank" href="javascript:shareFacebook('http://192.168.0.57/zzal-bit93/detailpage.html')">
+	                        <div class="fa fa-facebook comuni" data-layout="button" data-href="http://192.168.0.57/zzal-bit93/detailpage.html" aria-hidden="true"></div>
+		                      <script>
+							  						function shareFacebook(url){
+		                      		window.open("https://www.facebook.com/sharer/sharer.php?u="+url)
+		                      	}
+		                      </script>
+                      	</a>
+                      	</div>
+	                    </a>
+	                  </li>
+
+                  <li>
+                    <a href="#" onclick="javascript:window.open('https://twitter.com/intent/tweet?text=[%EA%B3%B5%EC%9C%A0]%20'
+					+encodeURIComponent(document.URL)+'%20-%20'+encodeURIComponent(document.title), 'twittersharedialog',
+ 					'menubar=no,toolbar=no,resizable=yes,scrollbars=yes,height=300,width=600');return false;" target="_blank"
+					 alt="Share on Twitter" >
+                      <div class="down-down auto">
+                        <div class="fa fa-twitter comuni" aria-hidden="true"></div>
+                      </div>
+                   </a>
+                  </li>
+                  <li>
+                    <a href="#" onclick="javascript:window.open('http://share.naver.com/web/shareView.nhn?url='+encodeURIComponent(document.URL)+'&title='+encodeURIComponent(document.title),
+                    'naversharedialog', 'menubar=no,toolbar=no,resizable=yes,scrollbars=yes,height=300,width=600');return false;" target="_blank" alt="Share on Naver" >
+                      <div class="down-down listen">
+                        <span>
+													<script type="text/javascript" src="//static.naver.net/blog/share/blog_sharebutton.js?v={0}"></script>
+													<script type="text/javascript">
+													new ShareBlog.makeButton({"type": "c"});
+													</script>
+												</span>
+                      </div>
+                    </a>
+                  </li>
+                  </ul>
+                </div>
+              </div>
+     <!-- left-side-->
+
+     <!-- right-side-->
+              <div class="detail-right">
+                <div class="upper-contaniner">
+                  <div class="user-lect-info">
+                    <div class="left-info" id="writer-info">
+                    </div><!--left-info-->
+                    <div class="write-date"><span class='date-num'></span><span>작성</span></div>
+                  </div>
+                  <div class="zzal-collection clearfix">
+                    <h4 class="upside">이 짤강이 속한 컬렉션</h4>
+                    <a href="#" class="img mycollectlist"></a>
+									  <h3 class="title"><a href="#" class="collect-title"></a></h3>
+                    <div class="bottomside clearfix">
+                      <div class="leftside">
+                        <span class="left-width">짤강수</span><span class="zzal-cnt"></span><br>
+                        <span class="left-width">구독자수</span><span class="subs-cnt"></span>
+									    </div>
+									      <button type="button" class="subscribe-btn do-subc btn btn-info">구독하기</button>
+									      <button type="button" class="subscribe-btn no-subc btn btn-default">구독취소</button>
+								   </div>
+                  </div>
+                  <div class="user-lects-units">
+                    <div class="title">
+                      <div class="other-lects">[<span class="writer"></span>]의 다른짤강</div>
+                      <div class='more-view'><a href="#">더보기<i class="fa fa-plus" aria-hidden="true"></i></a></div>
+                    </div>
+                    <div class="lects-units-sliders">
+                      <div class="swiper-container lects-units">
+                          <div class="swiper-wrapper lects-units-wrapper" id="writer-otherzzal">
+                          </div>
+                          <div class="web-swiper-smallbtn swiper-button-next swiper-button-white"></div>
+                          <div class="web-swiper-smallbtn swiper-button-prev swiper-button-white"></div>
+                      </div>
+                    </div>
+                  </div>
+                </div><!--upper-contaniner-->
+
+                <div class="down-container">
+                 <div class="reply-inputer">
+                    <div class="user-phot thumbnail-phot-insert"></div>
+                    <div class="input-con">
+                      <div class="user-name"><span class='name'>로그인을 해주세요 </span></div>
+                      <form class="inputer" action="index.html" method="post">
+                        <textarea class='input-reply' name="" value="" placeholder="덧글을 입력해 보세요!"></textarea>
+                        <button class='submit-reply' type="button" name="button">입력</button>
+                      </form>
+                    </div>
+                 </div>
+                 <div class="reply-list">
+                  <div class="replycnt"><span></span><span>개의 댓글</span></div>
+                   <ul>
+                   </ul>
+                 </div>
+                </div><!--down-container-->
+              </div>
+     <!-- right-side-->
+<!-- detail-siwpe swiper-container -->
+  <div class="detail-loca">
+
+
+       <div class="detail-siwpe swiper-container">
+           <div class="swiper-wrapper detail-page-swipe">
+
+						 <div class="zzalswipe-tg swiper-slide main">
+						 </div>
+		
+            <div class="swiper-slide last-user-reply">
+              <div class="contents last-user-page">
+                <div class="loca">
+
+                 <div class="type-contents">
+                 
+                   <div class="upper-contaniner">
+                  <div class="user-lect-info">
+                   <div class="left-info" id="writer-info2">
+                   </div><!--left-info-->
+                  <div class="write-date"><span class='date-num'></span><span>작성</span></div>
+                  </div>
+                  <div class="zzal-collection clearfix">
+                    <h4 class="upside">이 짤강이 속한 컬렉션</h4>
+                    <a href="#" class="img mycollectlist"></a>
+									  <h3 class="title"><a href="#" class="collect-title"></a></h3>
+                    <div class="bottomside clearfix">
+                      <div class="leftside">
+                        <span class="left-width">짤강수</span><span class="zzal-cnt"></span><br>
+                        <span class="left-width">구독자수</span><span class="subs-cnt"></span>
+									    </div>
+									      <button type="button" class="subscribe-btn do-subc btn btn-info">구독하기</button>
+									      <button type="button" class="subscribe-btn no-subc btn btn-default">구독취소</button>
+								   </div>
+                  </div>
+                    <div class="user-lects-units">
+                      <div class="title">
+                        <div class="other-lects">[<span class="writer"></span>]의 다른짤강</div>
+                        <div class='more-view'><a href="#">더보기<i class="fa fa-plus" aria-hidden="true"></i></a></div>
+                      </div>
+                      <div class="lects-units-sliders">
+                        <div class="swiper-container lects-units">
+                            <div class="swiper-wrapper lects-units-wrapper" id="writer-otherzzal2">
+                            </div>
+                            <div class="web-swiper-smallbtn swiper-button-next swiper-button-white"></div>
+                            <div class="web-swiper-smallbtn swiper-button-prev swiper-button-white"></div>
+                        </div>
+                      </div>
+                    </div>
+                </div><!--upper-contaniner-->
+                
+                <div class="down-container">
+                 <div class="reply-inputer">
+                    <div class="user-phot thumbnail-phot-insert"></div>
+                    <div class="input-con">
+                      <div class="user-name"><span class='name'>로그인을 해주세요 </span></div>
+                      <form class="inputer" action="index.html" method="post">
+                        <textarea class='input-reply' name="" value="" placeholder="덧글을 입력해 보세요!"></textarea>
+                        <button class='submit-reply' type="button" name="button">입력</button>
+                      </form>
+                    </div>
+                 </div>
+                 <div class="reply-list">
+                  <div class="replycnt"><span></span><span>개의 댓글</span></div>
+                   <ul>
+                   </ul>
+                 </div>
+                </div><!--down-container-->
+                
+                 </div><!--loca-->
+                 </div>
+              </div>
+           </div>
+           </div><!--wrapper-->
+           <!-- Add Pagination -->
+           <div class="swiper-pagination main-disabled"></div>
+           <!-- Add Arrows -->
+           <div class="web-swiper-btn swiper-button-next"></div>
+           <div class="web-swiper-btn swiper-button-prev"></div>
+       </div>
+<!-- detail-siwpe swiper-container -->
+ </div>
+ </div>
+</div>
+<!--main-content-->
+
+<div class="detail-m-footer">
+      <div class="mdetail-footer">
+        <div class="comment mfooter">
+          <a href="#">
+            <span class="fa fa-commenting-o name" aria-hidden="true"></span><span class="num replynum"></span>
+          </a>
+        </div>
+        <div class="like mfooter">
+          <a href="#">
+            <span class="fa fa-heart-o name" aria-hidden="true"></span><span class="num likenumber"></span>
+          </a>
+        </div>
+        <div class="share mfooter">
+          <a href="#">
+            <span class="fa fa-share-alt name" aria-hidden="true"></span><span class="num"></span>
+          </a>
+        </div>
+      </div>
+</div>
+
+<!-- 작성자 정보 -->
+<script id="writer-info-template" type="text/x-handlebars-template">
+{{#each list}}
+<a href="#" class="zzalwriternick">
+  <div class="lect-user-phot thumbnail-phot-insert" style='background-image:url("upload/{{member.membpic}}")'></div>
+</a>
+<div class="zzal-lect-info">
+  <ul>
+    <li><a href="#" class="zzalwriternick"><span class='left-1st user-name'>[{{member.nick}}]</span><span class='right-1st'></span></a></li>
+    <li><span class='left-1st left-width viewcnt'>조회수</span><span class='right-1st viewnum'>{{hitCount}}</span></li>
+    <li><span class='left-1st left-width likecnt'>좋아요</span><span class='right-1st likenum'>{{likeCount}}</span></li>
+    <li><span class='left-1st left-width reply'>댓 글</span><span class='right-1st replynum'></span></li>
+  </ul>
+</div>
+{{/each}}
+</script>
+
+<!-- zzaler의 다른짤강 -->
+<script id="writer-otherzzal-template" type="text/x-handlebars-template">
+{{#each zzalList}}
+<div class="swiper-slide lects-unit otherzzals">
+<a href="#" class="zzal-lect" data-zzno="{{zzno}}">
+  <div class="images-wrapper">
+    <img class="contents-images-zzals"src="upload/{{mainPic}}">
+		<h3 class="other-title">{{title}}</h3>
+  </div>
+</a>
+</div>
+{{/each}}
+</script>
+
+<!-- 짤강의 커버 -->
+<script id="detail-swipeslide-template" type="text/x-handlebars-template">
+{{#each list}}
+    <div class="contents">
+      <div class="type-main" style='background-image: linear-gradient(rgba(0,0,0,0.1), rgba(0,0,0,0.5)), url("upload/{{mainPic}}")'>
+      <div class="title-info">
+				<div class="zzal-caterogy">{{categoryName}}</div>
+        <div class="write-date"><span id="main-date"></span><span>작성</span></div>
+        <h3 class="zzal-title">{{title}}</h3>
+        <div class="left-info">
+          <div class="lect-user-phot thumbnail-phot-insert" style='background-image:url("upload/{{member.membpic}}")'></div>
+          <div class="zzal-lect-info">
+            <ul>
+              <li><span class='left-1st user-name'>{{member.nick}}</span><span class='right-1st'></span></li>
+              <li><span class='left-1st viewcnt'>조회수 </span><span class='right-1st viewnum'>{{hitCount}}</span></li>
+            </ul>
+          </div>
+        </div>
+        <div class="mover-mover"><div class="fa fa-chevron-right" aria-hidden="true"></div> 좌우로 넘겨 보아요!</div>
+      </div>
+      </div>
+    </div>
+ {{/each}}
+</script>
+
+<!-- 짤강의 페이지들 -->
+<script id="pages-swipeslide-template" type="text/x-handlebars-template">
+{{#each list}}
+<div class="swiper-slide sw-contents">
+<div class="contents">
+<div class="type-contents">
+  <div  class="content-box">
+    <div class="images-wrapper pages">
+			{{#isImage page.conTypeZ}}
+			    <iframe src="https://www.youtube.com/embed/{{page.pagePic}}" frameborder="0" allowfullscreen></iframe>
+			{{else}}
+          <img class= "contents-images-zzals" src="upload/{{page.pagePic}}">
+			{{/isImage}}
+    </div>
+  </div>
+  <div class="text">
+    <p>{{{page.ConTextZ}}}</p>
+  </div>
+</div>
+</div>
+</div>
+
+{{/each}}
+
+</script>
+
+
+<!--  reply 핸들바스 script문 -->
+<!-- 베스트 댓글 -->
+ <script id="reply-bestReplyList-template" type="text/x-handlebars-template">
+ {{#each list}}
+  <li class='reply-li' data-mno='{{memberNumber}}'>
+    <div class='reply-unit-con'>
+      <a href='#'>
+        <div data-mno='{{memberNumber}}' class='reply-user-phot thumbnail-phot-insert' style="background-image:url('upload/{{membPic}}')"></div>
+      </a>
+      <div class='reply-con'>
+       <div class='best-nickname'>
+        <span class="best-reply">BEST</span><div class='user-name'><span class='name' data-mno='{{memberNumber}}'>{{nickName}}</span></div>
+       </div>
+          <a href="#" class="cancle-wrap">
+           <div class="cancle" data-rno='{{replyNumber}}' data-mno='{{memberNumber}}' data-reparent='{{rereplyParentNumber}}'><i class="fa fa-times" aria-hidden="true"></i></div>
+          </a>  
+        <div class='reply-text'><div class='text'>{{content}}</div></div>
+      </div>
+      <div class='reply-info clearfix'>
+        <div class='date'><span class='when'>{{createDate}}</span>
+          <a href='#'>
+           <span class='re-reply'>답글달기</span>
+          </a>
+      </div>
+      <div class='press'>
+          <a href='#'>
+            <span class='like {{replyNumber}}'>
+              <i class='fa fa-heart-o' aria-hidden='true'></i><span class="replyCount"> {{replyLike}}</span>
+            </span>
+          </a>
+          <a href='#'>
+            <span class='added-reply'>
+              <i class='fa fa-comment-o' aria-hidden='true'></i><span> {{reparentCountNumber}}</span>
+            </span>
+          </a>
+      </div>
+    </div>
+    </div>
+     <div class="re-reply-inputer clearfix" style="display:none">
+        <a href="#">
+          <div class="user-phot thumbnail-phot-insert">
+          </div>
+        </a>
+        <div class="input-con">
+          <form class="inputer" action="index.html" method="post">
+            <textarea class='input-re-reply' name="" value="" placeholder="대댓글을 입력해 보세요!"></textarea>
+            <button class='cancle-re-reply' type="button" name="button">취소</button>
+            <button class='submit-re-reply' type="button" name="button" data-rno='{{replyNumber}}'>입력</button>
+          </form>
+        </div>
+     </div>
+  </li>
+ {{/each}}
+</script>
+ 
+
+<!-- 부모댓글 or 자식댓글 추가(reparent 유무에 따라) -->
+ <script id="reply-list-template" type="text/x-handlebars-template">
+{{#each list}}
+{{#if rereplyParentNumber}}
+<li class='reply-li re-reply-li' data-son='{{replyNumber}}' data-reparent='{{rereplyParentNumber}}'>
+<div class='reply-unit-con re-reply-con'>
+    <a href='#'>
+      <div data-mno='{{memberNumber}}' class='reply-user-phot thumbnail-phot-insert' style="background-image:url('upload/{{membPic}}')"></div>
+    </a>
+  <div class='reply-con'>
+    <div class='user-name'><span class='name' data-mno='{{memberNumber}}'>{{nickName}}</span></div>
+      <a href="#" class="cancle-wrap">
+       <div class="cancle re-reply-delete" data-rno='{{replyNumber}}' data-mno='{{memberNumber}}' data-reparent='{{rereplyParentNumber}}'><i class="fa fa-times" aria-hidden="true"></i></div>
+      </a>
+    <div class='reply-text'><div class='text'>{{content}}</div></div>
+  </div>
+  <div class='reply-info clearfix'>
+    <div class='date'><span class='when'>{{createDate}}</span>
+    </div>
+    <div class='press'>
+        <a href='#'>
+          <span class='like {{replyNumber}}' data-reparent='{{rereplyParentNumber}}'>
+            <i class='fa fa-heart-o' aria-hidden='true'></i><span class="replyCount"> {{replyLike}}</span>
+          </span>
+        </a>
+    </div>
+  </div>
+</div>
+</li>
+{{else}}
+  <li class='reply-li' data-mno='{{memberNumber}}'>
+    <div class='reply-unit-con'>
+      <a href='#'>
+        <div data-mno='{{memberNumber}}' class='reply-user-phot thumbnail-phot-insert' style="background-image:url('upload/{{membPic}}')"></div>
+      </a>
+      <div class='reply-con'>
+        <div class='user-name'><span class='name' data-mno='{{memberNumber}}'>{{nickName}}</span></div>
+          <a href="#" class="cancle-wrap">
+           <div class="cancle" data-rno='{{replyNumber}}' data-mno='{{memberNumber}}' data-reparent='{{rereplyParentNumber}}'><i class="fa fa-times" aria-hidden="true"></i></div>
+          </a>  
+        <div class='reply-text'><div class='text'>{{content}}</div></div>
+      </div>
+      <div class='reply-info clearfix'>
+        <div class='date'><span class='when'>{{createDate}}</span>
+          <a href='#'>
+           <span class='re-reply'>답글달기</span>
+          </a>
+      </div>
+      <div class='press'>
+          <a href='#'>
+            <span class='like {{replyNumber}}'>
+              <i class='fa fa-heart-o' aria-hidden='true'></i><span class="replyCount"> {{replyLike}}</span>
+            </span>
+          </a>
+          <a href='#'>
+            <span class='added-reply'>
+              <i class='fa fa-comment-o' aria-hidden='true'></i><span> {{reparentCountNumber}}</span>
+            </span>
+          </a>
+      </div>
+    </div>
+    </div>
+     <div class="re-reply-inputer clearfix" style="display:none">
+        <a href="#">
+          <div class="user-phot thumbnail-phot-insert">
+          </div>
+        </a>
+        <div class="input-con">
+          <form class="inputer" action="index.html" method="post">
+            <textarea class='input-re-reply' name="" value="" placeholder="대댓글을 입력해 보세요!"></textarea>
+            <button class='cancle-re-reply' type="button" name="button">취소</button>
+            <button class='submit-re-reply' type="button" name="button" data-rno='{{replyNumber}}'>입력</button>
+          </form>
+        </div>
+     </div>
+  </li>
+  {{/if}}
+{{/each}}
+</script>
+
+<!-- 부모댓글 입력후 리스트에 바로추가해주는 핸들바스 -->
+<script id="reply-insert-template" type="text/x-handlebars-template">
+  <li class='reply-li'>
+    <div class='reply-unit-con'>
+      <a href='#'>
+        <div data-mno='{{memberNumber}}' class='reply-user-phot thumbnail-phot-insert' style="background-image:url('upload/{{membPic}}')"></div>
+      </a>
+      <div class='reply-con'>
+        <div class='user-name'><span class='name' data-mno='{{memberNumber}}'>{{nickName}}</span></div>
+          <a href="#" class="cancle-wrap">
+           <div class="cancle" data-rno='{{replyNumber}}' data-mno='{{memberNumber}}' data-reparent='{{rereplyParentNumber}}'><i class="fa fa-times" aria-hidden="true"></i></div>
+          </a>  
+        <div class='reply-text'><div class='text'>{{content}}</div></div>
+      </div>
+      <div class='reply-info clearfix'>
+        <div class='date'><span class='when'>{{createDate}}</span>
+          <a href='#'>
+           <span class='re-reply'>답글달기</span>
+          </a>
+        </div>
+        <div class='press'>
+          <a href='#'>
+            <span class='like' data-reparent='{{rereplyParentNumber}}'>
+              <i class='fa fa-heart-o' aria-hidden='true'></i><span class="replyCount"> {{replyLike}}</span>
+            </span>
+          </a>  
+          <a href='#'>
+            <span class='added-reply'>
+              <i class='fa fa-comment-o' aria-hidden='true'></i><span> {{reparentCountNumber}}</span>
+            </span>
+          </a>
+        </div>
+      </div>
+    <div class="re-reply-inputer clearfix" style="display:none">
+       <a href="#">
+         <div class="user-phot thumbnail-phot-insert">
+         </div>
+       </a>
+       <div class="input-con">
+         <form class="inputer" action="index.html" method="post">
+           <input class='input-re-reply' type="text" name="" value="" placeholder="대댓글을 입력해 보세요!">
+           <button class='cancle-re-reply' type="button" name="button">취소</button>
+           <button class='submit-re-reply' type="button" name="button" data-rno='{{replyNumber}}'>입력</button>
+         </form>
+       </div>
+    </div>
+    </div>
+  </li>
+</script>
+
+<script src="node_modules/jquery/dist/jquery.min.js"></script>
+<script src="https://developers.kakao.com/sdk/js/kakao.min.js"></script>
+<script src="node_modules/handlebars/dist/handlebars.min.js"></script>
+<script src="node_modules/swiper/dist/js/swiper.jquery.min.js"></script>
+<script src="scrollbar/jquery.mCustomScrollbar.concat.min.js"></script>
+<script src="js/load.js"></script>
+<script src="js/detailpage.js"></script>
+<script src="js/reply.js"></script>
+
+</body>
+</html>

@@ -1,0 +1,279 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="bitcamp.java93.dao.ZzalDao">
+  
+  <resultMap type="zzal" id="zzalMap">
+    <id column="zzno" property="zzno"/>
+    <result column="mno" property="mno"/>
+    <result column="cno" property="cno"/>
+    <result column="titl" property="title"/>
+    <result column="pic2" property="mainPic"/>
+    <result column="cdt2" property="cdt"/>
+    <result column="ztmp" property="zzalTemporary"/>
+    <result column="hitcnt" property="hitCount"/>
+    <result column="like_cnt" property="likeCount"/>
+    <result column="reply_cnt" property="replyCount"/>
+    <result column="rCount" property="rowCount"/>
+    <result column="cName" property="categoryName"/>
+    <association property="member" javaType="Member">
+	    <id column="mno" property="no"/>
+	    <result column="nick" property="nick"/>
+	    <result column="email" property="email"/>
+	    <result column="pwd" property="password"/>
+	    <result column="mtype" property="membtype"/>
+	    <result column="stype" property="signtype"/>
+	    <result column="pic1" property="membpic"/>
+	  </association>
+	  <association property="zzallike" javaType="Zzallike">
+	    <id column="zzno" property="zzno"/>
+	    <result column="mno" property="mno"/>
+	    <result column="cdt1" property="cdt"/>
+	  </association>
+	  <association property="page" javaType="Page">
+	    <id column="zpno" property="zzalpageNo"/>
+	    <result column="zzno" property="zzalNo"/>
+	    <result column="pgno" property="pageNo"/>
+	    <result column="type" property="conTypeZ"/>
+	    <result column="pic3" property="pagePic"/>
+	    <result column="cont" property="ConTextZ"/>
+	  </association>
+	  <association property="choiceCategory" javaType="ChoiceCategory">
+	    <id column="cno" property="categoryNumber"/>
+    	<result column="mno" property="memberNumber"/>
+	  </association>
+	  <association property="collect" javaType="Collect">
+	    <id column="cono" property="no"/>
+			<result column="zzno" property="zzno" />
+			<result column="pub" property="isPublic" />
+	  </association>
+  </resultMap>
+  
+  <!-- 상세 페이지 -->
+	<select id="selectList" resultMap="zzalMap" parameterType="int">
+    SELECT zz.zzno, zz.cono, zz.mno, zz.nick, zz.pic1, zz.cno, zz.titl, zz.pic2, zz.cdt2, zz.hitcnt, c.name as cName, zz.like_cnt
+    FROM
+    (SELECT z.zzno, z.mno, m.nick, m.pic as pic1, z.cno, z.cono, z.titl, z.pic as pic2, z.cdt as cdt2, z.hitcnt,
+    (SELECT count(*) FROM lik WHERE zzno=z.zzno) as like_cnt
+    FROM zzal_lect z INNER JOIN memb m ON z.mno = m.mno  
+    WHERE z.zzno = #{no} ) as zz
+    LEFT JOIN catg c
+    ON zz.cno = c.cno
+  </select>
+  
+  <!-- 해당 짤강의의 페이지들  -->
+  <select id="selectListPages" resultMap="zzalMap" parameterType="int">
+    SELECT p.pic as pic3, p.cont, p.type 
+  	FROM page p INNER JOIN zzal_lect z ON p.zzno = z.zzno 
+ 		WHERE p.zzno = #{zzno}
+  </select>
+  
+  <!-- index.html 로그인 전. 짤강의 리스트 순서 : (좋아요 * 10) + 덧글 수 + 조회수  + 최신순(zzno순)-->
+  <select id="zzalListWithCount" resultMap="zzalMap" parameterType="map">
+    SELECT z.zzno, z.mno, m.nick, m.pic as pic1, z.cno, z.titl, z.pic as pic2, z.cdt as cdt2, z.hitcnt,
+    (SELECT count(*) FROM lik WHERE zzno=z.zzno) as like_cnt, 
+    (SELECT count(*) FROM reply WHERE zzno=z.zzno) as reply_cnt
+    FROM zzal_lect z INNER JOIN memb m on z.mno = m.mno
+    LEFT JOIN colct c on z.cono = c.cono
+    WHERE (z.ztmp=false AND z.cono IS NULL) OR (c.pub = false AND z.ztmp=false)
+    ORDER BY (like_cnt * 10) + reply_cnt + z.hitcnt + z.zzno desc
+    LIMIT #{startIndex}, #{pageSize}
+  </select>
+  
+  <!-- index.html 로그인 후 -->
+  <select id="zzalListMyCategory" resultMap="zzalMap" parameterType="map">
+    SELECT z.zzno, z.mno, m.nick, m.pic as pic1, z.cno, z.titl, z.pic as pic2, z.cdt as cdt2, z.hitcnt,
+    (SELECT count(*) FROM lik WHERE zzno=z.zzno) as like_cnt, 
+    (SELECT count(*) FROM reply WHERE zzno=z.zzno) as reply_cnt
+    FROM zzal_lect z INNER JOIN memb m on z.mno = m.mno
+    LEFT JOIN colct c on z.cono = c.cono
+    
+    WHERE (z.ztmp=false AND z.cono IS NULL AND z.cno in 
+    <foreach collection="categoryNumberArray" item="cno" open="(" close=")" separator=",">
+		  #{cno}
+		</foreach>
+    
+    ) OR (c.pub = false AND z.ztmp=false AND z.cno in 
+    <foreach collection="categoryNumberArray" item="cno" open="(" close=")" separator=",">
+		  #{cno}
+		</foreach>
+    )
+    
+    ORDER BY (like_cnt * 10) + reply_cnt + z.hitcnt desc
+    LIMIT #{startIndex}, #{pageSize}
+  </select>
+  
+  <!-- 각 카테고리 페이지 짤강의 리스트 -->
+  <select id="zzalListCategory" resultMap="zzalMap" parameterType="map">
+    SELECT z.zzno, z.mno, m.nick, m.pic as pic1, z.cno, z.titl, z.pic as pic2, z.cdt as cdt2, z.hitcnt,
+    (SELECT count(*) FROM lik WHERE zzno=z.zzno) as like_cnt, 
+    (SELECT count(*) FROM reply WHERE zzno=z.zzno) as reply_cnt
+    FROM zzal_lect z INNER JOIN memb m on z.mno = m.mno
+    LEFT JOIN colct c on z.cono = c.cono
+    WHERE (z.ztmp=false AND z.cono IS NULL AND z.cno = #{cno}) OR (c.pub = false AND z.ztmp=false AND z.cno = #{cno})
+    ORDER BY (like_cnt * 10) + reply_cnt + z.hitcnt desc
+    LIMIT #{startIndex}, #{pageSize}
+  </select>
+  
+  <!-- index.html 한주간 좋아요 많이 받은 랭킹 10 -->
+  <select id="zzalBestList" resultMap="zzalMap" parameterType="map">
+    SELECT *
+		FROM 
+		    (SELECT z.zzno, z.titl, z.pic as pic2, m.nick 
+		     FROM zzal_lect z INNER JOIN memb m ON z.mno = m.mno 
+		     LEFT JOIN colct c on z.cono = c.cono
+		     WHERE (z.ztmp=false AND z.cono IS NULL) OR (c.pub = false AND z.ztmp=false)) t1
+		LEFT JOIN
+		    (SELECT zzno, cdt, count(*) as week_like FROM lik WHERE cdt Between AddDate(Now(),-7) AND Now() GROUP BY zzno) t2
+		ON
+		    t1.zzno = t2.zzno
+		WHERE week_like IS NOT NULL
+		ORDER BY week_like DESC
+		LIMIT 10
+  </select>
+  
+  <!-- category.html 한주간 좋아요 많이 받은 랭킹 10 -->
+  <select id="zzalBestCategoryList" resultMap="zzalMap" parameterType="int">
+    SELECT *
+		FROM 
+		    (SELECT z.zzno, z.titl, z.pic as pic2, m.nick 
+		     FROM zzal_lect z INNER JOIN memb m ON z.mno = m.mno
+		     LEFT JOIN colct c on z.cono = c.cono 
+		     WHERE (z.ztmp=false AND z.cono IS NULL AND z.cno = #{cno}) OR (c.pub = false AND z.ztmp=false AND z.cno = #{cno})) t1
+		LEFT JOIN
+		    (SELECT zzno, cdt, count(*) as week_like FROM lik WHERE cdt Between AddDate(Now(),-7) AND Now() GROUP BY zzno) t2
+		ON
+		    t1.zzno = t2.zzno
+		ORDER BY week_like DESC
+		LIMIT 10
+  </select>
+  
+  <!-- 추천순 페이지 : 한 주간 좋아요 많이 받은 랭킹 30 -->
+  <select id="zzalLikeRank" resultMap="zzalMap" parameterType="map">
+    SELECT *
+		FROM 
+		    (SELECT z.zzno, z.titl, z.pic as pic2, m.nick 
+		     FROM zzal_lect z INNER JOIN memb m ON z.mno = m.mno
+		     LEFT JOIN colct c on z.cono = c.cono
+    		 WHERE (z.ztmp=false AND z.cono IS NULL) OR (c.pub = false AND z.ztmp=false)
+		     ) t1
+		LEFT JOIN
+		    (SELECT zzno, cdt, count(*) as week_like FROM lik WHERE cdt Between AddDate(Now(),-7) AND Now() GROUP BY zzno) t2
+		ON
+		    t1.zzno = t2.zzno
+		ORDER BY week_like DESC
+		LIMIT 30
+  </select>
+  
+  <!-- 많이본 페이지. 한 주간 조회수 많은 랭킹 30 -->
+  <select id="zzalViewRank" resultMap="zzalMap" parameterType="map">
+    SELECT z.zzno, z.titl, z.pic as pic2, z.hitcnt, z.cdt as cdt2
+		FROM zzal_lect z
+		LEFT JOIN colct c on z.cono = c.cono
+		WHERE (z.ztmp=false AND z.cono IS NULL AND cdt Between AddDate(Now(),-7) AND Now()) OR (c.pub = false AND z.ztmp=false AND cdt Between AddDate(Now(),-7) AND Now())
+		ORDER BY hitcnt desc
+		LIMIT 30
+  </select>
+  
+  <!-- NEW 페이지. 무한스크롤 -->
+  <select id="zzalListNew" resultMap="zzalMap" parameterType="map">
+    SELECT z.zzno, z.mno, m.nick, m.pic as pic1, z.cno, z.titl, z.pic as pic2, z.cdt as cdt2, z.hitcnt,
+    (SELECT count(*) FROM lik WHERE zzno=z.zzno) as like_cnt, 
+    (SELECT count(*) FROM reply WHERE zzno=z.zzno) as reply_cnt
+    FROM zzal_lect z INNER JOIN memb m on z.mno = m.mno
+    LEFT JOIN colct c on z.cono = c.cono
+    WHERE (z.ztmp=false AND z.cono IS NULL) OR (c.pub = false AND z.ztmp=false)
+    ORDER BY z.cdt desc
+    LIMIT #{startIndex}, #{pageSize}
+  </select>
+  
+  <!-- detailpage.html : zzaler의 다른짤강 -->
+  <select id="zzalListOthers" resultMap="zzalMap" parameterType="map">
+    SELECT z.zzno, z.mno, m.nick, m.pic as pic1, z.cno, z.titl, z.pic as pic2, z.cdt as cdt2
+    FROM zzal_lect z INNER JOIN memb m on z.mno = m.mno AND z.mno = #{mno}
+    LEFT JOIN colct c on z.cono = c.cono
+    WHERE (z.ztmp=false AND z.cono IS NULL) OR (c.pub = false AND z.ztmp=false)
+    ORDER BY z.cdt desc
+    LIMIT 10
+  </select>
+  
+  <select id="countAll" resultType="int">
+    SELECT count(*)
+    FROM zzal_lect
+  </select>
+  
+  <!-- index.html에서 짤강의 리스트 뿌릴 때, 해당 조건에 맞는 짤강의가 몇개인지 알아내기  -->
+  <select id="foundRows" resultType="int">
+    SELECT count(*) FROM(
+    SELECT zzno,
+    (SELECT count(*) FROM lik WHERE zzno=z.zzno) as like_cnt, 
+    (SELECT count(*) FROM reply WHERE zzno=z.zzno) as reply_cnt
+    FROM zzal_lect z INNER JOIN memb m on z.mno = m.mno
+    LEFT JOIN colct c on z.cono = c.cono
+    WHERE (z.ztmp=false AND z.cono IS NULL) OR (c.pub = false AND z.ztmp=false)) as rowCount
+  </select>
+  
+  <select id="foundRowsMyIndex" resultType="int">
+    SELECT count(*) FROM(
+    SELECT zzno,
+    (SELECT count(*) FROM lik WHERE zzno=z.zzno) as like_cnt, 
+    (SELECT count(*) FROM reply WHERE zzno=z.zzno) as reply_cnt
+    FROM zzal_lect z INNER JOIN memb m on z.mno = m.mno
+    LEFT JOIN colct c on z.cono = c.cono
+    
+    WHERE (z.ztmp=false AND z.cono IS NULL AND z.cno in 
+    <foreach collection="categoryNumberArray" item="cno" open="(" close=")" separator=",">
+		  #{cno}
+		</foreach>
+    
+    ) OR (c.pub = false AND z.ztmp=false AND z.cno in 
+    <foreach collection="categoryNumberArray" item="cno" open="(" close=")" separator=",">
+		  #{cno}
+		</foreach>
+    )
+    ) as rowCount
+  </select>
+  
+  <select id="foundRowsCatetory" resultType="int">
+    SELECT count(*) FROM(
+    SELECT zzno,
+    (SELECT count(*) FROM lik WHERE zzno=z.zzno) as like_cnt, 
+    (SELECT count(*) FROM reply WHERE zzno=z.zzno) as reply_cnt
+    FROM zzal_lect z INNER JOIN memb m on z.mno = m.mno
+    LEFT JOIN colct c on z.cono = c.cono
+    WHERE (z.ztmp=false AND z.cono IS NULL AND z.cno = #{cno}) OR (c.pub = false AND z.ztmp=false AND z.cno = #{cno})) as rowCount
+  </select>
+  
+  <!-- 짤강 클릭시 조회수 증가 -->
+  <update id="hitCountUpdate" parameterType="zzal">
+    UPDATE zzal_lect SET 
+      hitcnt = hitcnt + 1
+    WHERE zzno=#{zzno}
+  </update>
+  
+  <delete id="delete" parameterType="int">
+    delete from zzal_lect where zzno=#{no}
+  </delete>
+  
+  <delete id="deletePages" parameterType="int">
+    delete from page where zzno=#{no}
+  </delete>
+  
+  <delete id="deleteLike" parameterType="int">
+    delete from lik where zzno=#{no}
+  </delete>
+  
+  <delete id="deleteNotice" parameterType="int">
+    delete from notice where zzno=#{no}
+  </delete>
+  
+  <delete id="deleteReply" parameterType="int">
+    delete from reply where zzno=#{no}
+  </delete>
+  
+</mapper> 
+
+
+
+
